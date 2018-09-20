@@ -1,0 +1,22 @@
+{
+  "name": "simple-predix-ui",
+  "description": "Predix dependencies for simple-predix-ui",
+  "main": "index.js",
+  "authors": [
+    "Josh Carty"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/ookjosh/simple-predix-ui",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "px-gauge": "^2.3.0",
+    "px-vis-timeseries": "^4.0.1"
+  }
+}

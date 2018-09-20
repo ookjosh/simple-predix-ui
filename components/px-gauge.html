@@ -1,0 +1,30 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>px-gauge Demo</title>
+
+  <!-- Begin Predix stuff -->
+
+  <!-- Cross-browser support -->
+  <script src="./webcomponentsjs/webcomponents-lite.js"> </script>
+  <link rel="import" href="../../polymer/polymer.html" />
+  <link rel="import" href="../../px-icon-set/px-icon-set.html" />
+
+   <!-- Use the Predix theme if desired. -->
+  <link rel="import" href="./px-theme/px-theme-styles.html"/> 
+  <custom-style>
+    <style include="px-theme-styles" is="custom-style"></style>
+  </custom-style>
+
+  <!-- Our actual element we want to use -->
+  <link rel="import" href="./px-gauge/px-gauge.html"/>
+
+</head>
+
+<body>
+	<px-gauge value="9001" min="0" max="10000" unit="Power Level" > </px-gauge>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>px-vis-timeseries demo</title>
+
+	<!-- Begin Predix stuff -->
+
+  <!-- Cross-browser support -->
+  <script src="./webcomponentsjs/webcomponents-lite.js"> </script>
+  <link rel="import" href="../../polymer/polymer.html" />
+  <link rel="import" href="../../px-icon-set/px-icon-set.html" />
+
+   <!-- Use the Predix theme if desired. -->
+  <link rel="import" href="./px-theme/px-theme-styles.html"/> 
+  <custom-style>
+    <style include="px-theme-styles" is="custom-style"></style>
+  </custom-style>
+  
+  <!-- Actual element we want to use -->
+  <link rel="import" href="./px-vis-timeseries/px-vis-timeseries.html"/>
+ 
+
+</head>
+<body>
+
+<px-vis-timeseries
+		width=600
+		height=500
+		id="timeseries-stuff"
+		chart-horizontal-alignment="center"
+		chart-vertical-alignment="center"
+		chart-extents='{"x":["dynamic","dynamic"],"y":["dynamic","dynamic"]}' 
+		register-config='{"type":"horizontal"}' 
+    chart-data='
+		 [{
+		  "Timestamp": 10000,
+		  "asset1": 8.2,
+		  "asset2": 3.7765,
+		  "asset3": 0.5
+		 },
+		 {
+		  "Timestamp": 20000,
+		  "asset1": 7.2,
+		  "asset2": 4.7765,
+		  "asset3": 1.5
+		 },
+		 {
+		  "Timestamp": 30000,
+		  "asset1": 6.2,
+		  "asset2": 3.7765,
+		  "asset3": 0.5
+		 },
+		 {
+		  "Timestamp": 40000,
+		  "asset1": 5.2,
+		  "asset2": 2.7765,
+		  "asset3": 1.5
+		 }]'
+    series-config='
+	    {
+			  "uniqueSeriesId1": {
+			    "x": "Timestamp",
+			    "y": "asset1",
+			    "name": "Asset 1",
+			    "type": "scatter"
+			  },
+			  "uniqueSeriesId2": {
+			    "x": "Timestamp",
+			    "y": "asset2",
+			    "name": "Asset 2",
+			    "type": "scatter"
+			  },
+			  "uniqueSeriesId3": {
+			    "x": "Timestamp",
+			    "y": "asset3",
+			    "name": "Asset 3",
+			    "type": "line"
+			  }
+		}'
+		>
+	</px-vis-timeseries>
+
+</body>
+</html>

@@ -1,3 +1,17 @@
+<!--
+	px-vis-timeseries demo
+
+	When this file loads it displays a static chart, demonstrating data being defined directly through the <px-vid-timeseries> element. The purpose of this
+	is to show the general format for the data, but realistically is probably not what you would want to do unless it's a one-off static element.
+
+	There are also two buttons that will either: 
+		1. Replace all of the data on the chart with random data or
+		2. Append random data to one of the series to demonstrate real-time chart manipulation.
+
+	The point of these is to demonstrate how you can simply manipulate the charts to set bulk data or feed them at will.
+
+
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +45,8 @@
 		chart-vertical-alignment="center"
 		chart-extents='{"x":["dynamic","dynamic"],"y":["dynamic","dynamic"]}' 
 		register-config='{"type":"horizontal"}' 
+		x-axis-config='{"title": "Arbitrary time units"}'
+		y-axis-config='{"title": "Random"}'
     chart-data='
 		 [{
 		  "Timestamp": 10000,
@@ -80,5 +96,98 @@
 		>
 	</px-vis-timeseries>
 
+		<button onclick="generateNewData()">Generate a new chart</button>
+		<button onclick="addPoints()">Toggle adding points</button>
+
+
+
+	<script>
+		// Optional script to show how to work with the data and make it a bit more interesting.
+		// This is intentionally verbose to make each step clear. There are many shortcuts that could be made.
+		var timeseries = document.getElementById("timeseries-stuff")
+
+		// For generating chart data
+		var xData = []
+		var yData = []
+		var chartData = []
+
+		// Used for live update demo
+		var interval = null
+
+		function generateNewData() {
+			// Reset x,y, and chart data if populated
+			xData = []
+			yData = []
+			chartData = []
+
+			// Generate 1000 seconds of time points between -50 and 50
+			for (var i = 0; i < 1000; i++) {
+				xData.push(i)
+				yData.push(Math.random()*100 - 50)
+			}
+
+			// Now we will put this in the format that the chart expects
+			for (var k = 0; k < 1000; k++) {
+				chartData.push({
+					"Timestamp": xData[k],
+					"asset1": yData[k]
+				})
+			}
+
+			// Create a new series-config to describe how these points should be drawn
+			var newConfig = {
+				// An identifier for our series. Can be anything
+				"newSeriesId": {
+					// What key inside chartData is paired to an x value?
+					"x": "Timestamp",
+					// What key inside chartData is paired to a y value?
+					"y": "asset1",
+					// What should we display as the label for this series?
+					"name": "I'm a name!",
+					// What kind (e.g line or scatter) of plot should we use?
+					"type": "scatter"
+				}
+			}
+
+			// To set the whole dataset all at once.
+			// See the addPoints function for how to update the existing data
+			timeseries.set('chartData', chartData)
+			timeseries.set('seriesConfig', newConfig)
+			
+
+		}
+
+		// Starts a timer that appends points to the chart...
+		
+
+		function addPoints() {
+
+			if (interval !== null) {
+				// Stop an already started timer
+				clearInterval(interval)
+				interval = null
+				return
+			}
+			// Timer to add a new point every 500ms
+			interval = setInterval(()=>{
+				// Get most recent data point
+				var endPoint = timeseries.chartData[timeseries.chartData.length-1]
+				var lastTime = endPoint.Timestamp
+				var lastValue = endPoint.asset1
+
+				// Need to use this method in order to get the chart to resize and scale correctly.
+				timeseries.push('chartData',
+					{
+						// Add on to previous time so new data point is forward in time
+						"Timestamp": lastTime + 1000,
+						// Add randome amount to last value to change things up.
+						"asset1": lastValue + Math.floor(Math.random()*5-3)
+					} 
+				)
+
+			}, 500)
+		}
+
+	</script>
 </body>
 </html>

@@ -33,3 +33,5 @@ Now, using bower, you can install components you like from the predix-ui site. T
 
 
 
+# General Notes
+If you need help figuring out how to configure portions of these visualizations, it helps a lot to look at what subcomponents you are trying to work with. For instance, while working on something that has an `x-axis-config` property, you are actually passing information on to the px-vis-axis component. Taking a look at the documentation for that specific component will open up a lot of options for configuration, such as the ability to rotate ticks, etc.

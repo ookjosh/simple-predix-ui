@@ -1,0 +1,58 @@
+<!--
+  px-kpi combines some text elements with a px-vis-spark, which is a
+  small bar or line chart that is supposed to show trends.
+
+  For line charts, spark-data is an array of objects with x,y pairs.
+  For bar charts, spark-data is an array of positive integers.
+-->
+
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>px-kpi Demo</title>
+
+  <!-- Begin Predix stuff -->
+
+  <!-- Cross-browser support -->
+  <script src="./webcomponentsjs/webcomponents-lite.js"> </script>
+  <link rel="import" href="../../polymer/polymer.html" />
+  <link rel="import" href="../../px-icon-set/px-icon-set.html" />
+
+   <!-- Use the Predix theme if desired. -->
+  <link rel="import" href="./px-theme/px-theme-styles.html"/> 
+  <custom-style>
+    <style include="px-theme-styles" is="custom-style"></style>
+  </custom-style>
+
+  <!-- Our actual element we want to use -->
+  <link rel="import" href="./px-kpi/px-kpi.html"/>
+
+</head>
+
+<body>
+	<px-kpi 
+    spark-type="line"
+    label="Toys Created"
+    value="10K"
+    uom="Units"
+    status-icon="px-nav:down"
+    status-color="red"
+    status-label="25%"
+    spark-data='[{"x":1, "y":10}, {"x":2, "y":12}, {"x":3, "y":8}]'
+  > </px-kpi>
+
+  <px-kpi 
+    spark-type="bar"
+    label="Toys Created"
+    value="10K"
+    uom="Units"
+    status-icon="px-nav:down"
+    status-color="red"
+    status-label="25%"
+    spark-data='[10, 12, 8]'
+  > </px-kpi>
+</body>
+</html>

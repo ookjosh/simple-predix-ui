@@ -1,0 +1,191 @@
+<!-- 
+
+This example uses vanilla CSS, not Predixes css extensions. 
+We use flexbox here to create two rows with 3 columns in the top row and 2 in the bottom.	
+
+px-vis-circle requires parent container to have good size settings - doesn't work well with flex
+on it's own.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Layout Example</title>
+
+	<!-- Begin Predix stuff -->
+
+  <!-- Cross-browser support -->
+  <script src="./webcomponentsjs/webcomponents-lite.js"> </script>
+  <link rel="import" href="../../polymer/polymer.html" />
+  <link rel="import" href="../../px-icon-set/px-icon-set.html" />
+
+   <!-- Use the Predix theme if desired. -->
+  <link rel="import" href="./px-theme/px-theme-styles.html"/> 
+  <custom-style>
+    <style include="px-theme-styles" is="custom-style"></style>
+  </custom-style>
+
+  <!-- Our actual element we want to use -->
+  <link rel="import" href="./px-percent-circle/px-percent-circle.html"/>
+  <link rel="import" href="./px-vis-bar-chart/px-vis-bar-chart.html"/>
+  <link rel="import" href="./px-kpi/px-kpi.html"/>
+
+  <style>
+  html, body {
+  	margin:0px;
+  }
+
+  .rowContainer {
+  	display: flex;
+  	flex-direction: column;
+  }
+
+  .row {
+  	display: flex;
+  	flex-direction: row;
+  	justify-content: space-between;
+
+  	flex:1;
+  }
+
+  .px-circle-container {
+  	width: 300px;
+  	margin: 10px;
+  	border: 2px solid gray;
+  	border-radius: 5px
+  }
+
+  .column {
+  	margin: 15px;
+  	flex-grow:1;
+  	border: 2px solid gray;
+  	border-radius: 5px;
+  }
+  .column2 {
+  	margin: 15px;
+
+  	flex-grow:2;
+  	border: 2px solid gray;
+  	border-radius: 5px
+  }
+
+	</style>
+
+</head>
+<body>
+	<div class="rowContainer">
+
+		
+		
+		<div id="topRow" class="row">
+			<div id="topColumn1" class=" px-circle-container">
+				<px-percent-circle
+		      max="100"
+		      thickness="30"
+		      val="50"
+		    > </px-percent-circle>
+			</div>
+			<div id="topColumn1" class=" px-circle-container">
+				<px-percent-circle
+		      max="100"
+		      thickness="30"
+		      val="50"
+		    > </px-percent-circle>
+			</div>
+			<div id="topColumn1" class=" px-circle-container">
+				<px-percent-circle
+		      max="100"
+		      thickness="30"
+		      val="50"
+		    > </px-percent-circle>
+			</div>
+		</div>
+
+		<div id="bottomRow" class="row">
+			<div id="bottomColumn1" class="column2">
+				<px-vis-bar-chart
+					width="600"
+					height="500"
+					margin='{"left":100,"top":10,"bottom":150,"right":50}' 
+					chart-type="bar"
+					register-config='{"type":"horizontal", "truncationLength": -1}'
+					x-axis-config='{"title": "Factory Number", "labelRotation":60}'
+					y-axis-config='{"title": "Output ($)"}'
+					scale-padding="0.5"
+					chart-data='
+					[
+						{"factory":"Maine 01", "turbines":5, "wings":2, "mri": 0},
+						{"factory":"Maine 02", "turbines":5, "wings":2, "mri": 0},
+						{"factory":"Maine 03", "turbines":5, "wings":2, "mri": 0},
+						{"factory":"Maine 04", "turbines":5, "wings":2, "mri": 0},
+						{"factory":"Maryland 01", "turbines":5, "wings":2, "mri": 5},
+						{"factory":"Maryland 02", "turbines":5, "wings":2, "mri": 5},
+						{"factory":"Maryland 03", "turbines":5, "wings":2, "mri": 5},
+						{"factory":"Michigan 01", "turbines":2, "wings":2, "mri": 2},
+						{"factory":"Michigan 02", "turbines":3, "wings":1, "mri": 2},
+						{"factory":"Michigan 03", "turbines":1, "wings":1, "mri": 4},
+						{"factory":"Michigan 04", "turbines":1, "wings":5, "mri": 0},
+						{"factory":"Michigan 05", "turbines":2, "wings":3, "mri": 0},
+						{"factory":"Paris 01", "turbines":0, "wings":0, "mri": 6},
+						{"factory":"Paris 02", "turbines":0, "wings":0, "mri": 3},
+						{"factory":"Paris 03", "turbines":0, "wings":0, "mri": 5},
+						{"factory":"Paris 04", "turbines":1, "wings":0, "mri": 4}
+					]'
+					series-config='
+					{
+						"turbines":{"name": "Turbine Production", "y":"factory", "x":"turbines"}
+						
+
+					}
+					'
+
+
+				> </px-vis-bar-chart>
+			</div>
+
+			<div id="bottomColumn1" class="column">
+				<px-vis-bar-chart
+					width="600"
+					height="500"
+					margin='{"left":100,"top":10,"bottom":150,"right":50}' 
+					chart-type="column"
+					register-config='{"type":"vertical", "truncationLength": -1}'
+					x-axis-config='{"title": "Factory Number", "labelRotation":60}'
+					y-axis-config='{"title": "Output ($)"}'
+					scale-padding="0.5"
+					chart-data='
+					[
+						{"factory":"Maine 01", "turbines":5, "wings":2, "mri": 0},
+						{"factory":"Maine 02", "turbines":5, "wings":2, "mri": 0},
+						{"factory":"Maine 03", "turbines":5, "wings":2, "mri": 0},
+						{"factory":"Maine 04", "turbines":5, "wings":2, "mri": 0},
+						{"factory":"Maryland 01", "turbines":5, "wings":2, "mri": 5},
+						{"factory":"Maryland 02", "turbines":5, "wings":2, "mri": 5},
+						{"factory":"Maryland 03", "turbines":5, "wings":2, "mri": 5},
+						{"factory":"Michigan 01", "turbines":2, "wings":2, "mri": 2},
+						{"factory":"Michigan 02", "turbines":3, "wings":1, "mri": 2},
+						{"factory":"Michigan 03", "turbines":1, "wings":1, "mri": 4},
+						{"factory":"Michigan 04", "turbines":1, "wings":5, "mri": 0},
+						{"factory":"Michigan 05", "turbines":2, "wings":3, "mri": 0},
+						{"factory":"Paris 01", "turbines":0, "wings":0, "mri": 6},
+						{"factory":"Paris 02", "turbines":0, "wings":0, "mri": 3},
+						{"factory":"Paris 03", "turbines":0, "wings":0, "mri": 5},
+						{"factory":"Paris 04", "turbines":1, "wings":0, "mri": 4}
+					]'
+					series-config='
+					{
+						"turbines":{"name": "Turbine Production", "x":"factory", "y":"turbines"},
+						"wings":{"name": "Wing Production", "x":"factory", "y":"wings"},
+						"mri":{"name": "MRI Production", "x":"factory", "y":"mri"}
+
+					}
+					'
+
+
+				> </px-vis-bar-chart>
+			</div>
+			
+		</div>
+
+	</div>
+</body>
+</html>

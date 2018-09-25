@@ -1,0 +1,46 @@
+<!--
+  px-kpi combines some text elements with a px-vis-spark, which is a
+  small bar or line chart that is supposed to show trends.
+
+  For line charts, spark-data is an array of objects with x,y pairs.
+  For bar charts, spark-data is an array of positive integers
+
+  If not styled/contained it will fill its container size.
+-->
+
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>px-percent-circle Demo</title>
+
+  <!-- Begin Predix stuff -->
+
+  <!-- Cross-browser support -->
+  <script src="./webcomponentsjs/webcomponents-lite.js"> </script>
+  <link rel="import" href="../../polymer/polymer.html" />
+  <link rel="import" href="../../px-icon-set/px-icon-set.html" />
+
+   <!-- Use the Predix theme if desired. -->
+  <link rel="import" href="./px-theme/px-theme-styles.html"/> 
+  <custom-style>
+    <style include="px-theme-styles" is="custom-style"></style>
+  </custom-style>
+
+  <!-- Our actual element we want to use -->
+  <link rel="import" href="./px-percent-circle/px-percent-circle.html"/>
+
+</head>
+
+  <div id="containSoItsNotFullscreen" style="width:300px">
+  	<px-percent-circle
+      max="100"
+      thickness="30"
+      val="50"
+    > </px-percent-circle>
+  </div>
+
+</body>
+</html>

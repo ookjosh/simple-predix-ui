@@ -1,0 +1,27 @@
+<!--
+	Our own custom DOM element using Polymer!
+	This creates a dom-module that displays its contents when used as a tag in another html
+	file. E.g <test-module></test-module> -> Shows "HELLO THERE"
+-->
+
+<link rel="import" href="./polymer/polymer.html" />
+
+<dom-module id="test-module">
+  <template>
+      <div>
+      	<h1>HELLO THERE!</h1>
+      </div>
+
+  </template>
+</dom-module>
+
+<script>
+	"use strict";
+
+	(function(){Polymer({is:"test-module",
+
+	  isEqual:function isEqual(route,string){return route[0]===string},
+	    
+	  getSelection:function getSelection(newValue){this.selectedAsset=this.$.cb.selected.label}})})();
+
+</script>
